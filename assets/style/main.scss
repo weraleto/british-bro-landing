@@ -1,0 +1,48 @@
+@import 'fonts';
+@import 'variables';
+@import 'extensions';
+
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: $--font-family-main;
+    color: white;
+    font-size: 16px;
+    
+    background-color: $--color-violet-dark;
+}
+
+img, picture {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.container {
+    max-width: 1173px;
+    margin: 0 auto;
+}
+
+.btn {
+    @extend %btn;
+
+    &-white {
+        background-color: white;
+        color: #231F20;
+    }
+    &-yellow {
+        background-color: $--color-yellow;
+        color: white;
+    }
+
+    &.large {
+        min-height: 77px;
+        padding: 5px 60px;
+        font-size: 24px;
+        border-radius: 35px;
+    }
+}
