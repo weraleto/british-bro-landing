@@ -22,6 +22,10 @@ img, picture {
     display: block;
 }
 
+a {
+    color: inherit;
+}
+
 .container {
     max-width: 1173px;
     margin: 0 auto;
@@ -36,7 +40,33 @@ img, picture {
     }
     &-yellow {
         background-color: $--color-yellow;
+        color: #231F20;
+    }
+    &-outline {
         color: white;
+        border: 1px solid ;
+
+        &-yellow {
+            border-color: $--color-yellow;
+            background-color: black;
+        }
+        &-white {
+            background-color: transparent;
+            border-color: white;
+            font-weight: normal;
+        }
+    }
+
+    &.extra-small {
+        min-height: 42px;
+        border-radius: 10px;
+        padding: 5px 17px;
+    }
+
+    &.small {
+        min-height: 47px;
+        border-radius: 25px;
+        padding: 5px 20px;
     }
 
     &.large {
@@ -44,5 +74,26 @@ img, picture {
         padding: 5px 60px;
         font-size: 24px;
         border-radius: 35px;
+    }
+}
+
+
+label {
+    display: inline-block;
+    background-color: $--color-violet;
+    padding: 6px 20px;
+    margin-bottom: 21px;
+}
+input {
+    background-color: transparent;
+    outline: none;
+    border: 1px solid white;
+    transition: border-color .3s ease;
+    line-height: 64px;
+    color: white;
+    padding-left: 1em;
+
+    &:focus {
+        border-color: $--color-yellow;
     }
 }

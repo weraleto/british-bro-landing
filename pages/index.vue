@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app">
     <Navigation></Navigation>
     <main class="main">
       <header class="header">
@@ -11,6 +11,7 @@
             </h1>
             <p>Давно мечтаешь о собственной кофейне? Открывайся с “British Bro”</p>
             <p>Дарим 150 000 ₽ на открытие!</p>
+            <button class="btn btn-yellow large">Получить предложение</button>
           </div>
           <small>с 2018 г. в Санкт-Петербурге</small>
           <div class="header__picture">
@@ -18,7 +19,7 @@
           </div>
         </div>
       </header>
-      <section class="wbb">
+      <section class="wbb" id="advantages">
         <div class="wbb__bg-text"></div>
         <div class="container">
           <h2 class="wbb__title">ПОЧЕМУ <span class="highlight">BRITISH BRO COFFEE?</span></h2>
@@ -27,14 +28,18 @@
               <div class="wbb__item--icon">
                 <img :src="require(`@/assets/img/${it.img}.svg`)" :alt="it.title">
               </div>
-              <h3 class="wbb__item--title">{{it.title}}</h3>
+              <h3 class="wbb__item--title">{{it.title}}
+                <a v-if="it.has_btn" :href="it.btn_link" target="_blank">
+                  <button class="btn extra-small btn-outline btn-outline-white wbb__item--more">посмотреть</button>
+                </a>
+              </h3>
               <p class="wbb__item--text">{{it.text}}</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="business-model">
+      <section class="business-model" id="business_model">
         <h2 class="business-model__title">
           Бизнес-модель
         </h2>
@@ -111,7 +116,7 @@
         </div>
       </section>
 
-      <section class="banner">
+      <section class="banner" id="promo">
         <div class="container banner__container">
           <div class="banner__picture">
             <img src="@/assets/img/banner.png" alt="Напишите нам и получите скидку на открытие 150 000 ₽">
@@ -123,7 +128,7 @@
         </div>
       </section>
 
-      <section class="steps">
+      <section class="steps" id="investments">
         <h2 class="steps__title">ГРАФИК ОТКРЫТИЯ ВАШЕЙ КОФЕЙНИ</h2>
         <div class="container steps__container">
           <div class="steps__container--picture">
@@ -134,6 +139,37 @@
           <div class="container steps__footer--inner">
             <p>с british bro вы не останетесь одиноки ни на одном из этапов открытия.</p>
             <p>Мы знаем, как это не просто, мы открыли 4 собственные кофейни в Санкт-Петербурге различных форматов.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="form" id="form">
+        <div class="form__bg">
+          <img src="@/assets/img/logo-black.png" alt="Лого на черном фоне">
+        </div>
+        <div class="container form__container">
+          <div class="form__el">
+            <h2 class="form__el--title">
+              Присоединяйся!
+            </h2>
+            <form class="form__el--form" @submit.prevent>
+              <div class="form__el--form__group">
+                <div><label for="email" class="form__el--form__label">e-mail</label></div>
+                <input id="email" name="email" type="email" class="form__el--form__input">
+              </div>
+              <div class="form__el--form__group">
+                <div><label for="phone" class="form__el--form__label">телефон</label></div>
+                <input id="phone" name="phone" type="phone" class="form__el--form__input">
+              </div>
+              <div class="form__el--form__group">
+                <div><label for="name" class="form__el--form__label">имя</label></div>
+                <input id="name" name="name" type="text" class="form__el--form__input">
+              </div>
+              <button type="submit" class="btn large btn-yellow" @click.prevent>Откройте уже мою кофейню</button>
+            </form>
+          </div>
+          <div class="form__pic">
+            <img src="@/assets/img/form-man.png" alt="Бариста">
           </div>
         </div>
       </section>
@@ -161,7 +197,9 @@ export default {
         {
           img: 'wb2',
           title: 'АВТОРСКИЙ КОФЕ', 
-          text: 'Более 40 уникальных рецептов, красивые напитки, которые точно запостят в соцсети'
+          text: 'Более 40 уникальных рецептов, красивые напитки, которые точно запостят в соцсети',
+          has_btn: true,
+          btn_link: '/menu/coffee.pdf'
         },
         {
           img: 'wb3',
@@ -171,7 +209,9 @@ export default {
         {
           img: 'wb4',
           title: 'кухня', 
-          text: 'Гонконгские вафли и френчдоги, десерты и выпечка - то, что увеличит вашу прибыль'
+          text: 'Гонконгские вафли и френчдоги, десерты и выпечка - то, что увеличит вашу прибыль',
+          has_btn: true,
+          btn_link: ''
         },
         {
           img: 'wb5',
@@ -194,9 +234,13 @@ export default {
 @import '@/assets/style/variables';
 @import '@/assets/style/extensions';
 
+#app {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 .header {
   min-height: 641px;
-  // min-height: 44.51vw;
   background: url('@/assets/img/header-bg.png') no-repeat;
   background-position: 40% 40%;
   background-size: auto 125%;
@@ -245,6 +289,9 @@ export default {
       &:first-of-type {
         margin: 1em 0;
       }
+      &:last-of-type {
+        margin-bottom: 2em;
+      }
     }
   }
 
@@ -289,6 +336,14 @@ export default {
     &--title {
       @extend %subtitle;
       margin-top: 1em;
+      position: relative;
+      display: inline-block;
+    }
+    &--more {
+      position: absolute;
+      top: 50%;
+      left: calc(100% + 19px);
+      transform: translate(0, -50%);
     }
     &--text {
       margin-top: 1em;
@@ -347,7 +402,6 @@ export default {
 .steps {
   background-color: #F4F3F4;;
   padding-top: 54px;
-  max-width: 100vw;
   overflow: hidden;
 
   &__title {
@@ -371,7 +425,7 @@ export default {
         bottom: 0;
         min-width: 385px;
         background: url('@/assets/img/cats-left.png') no-repeat top center;
-        background-size: cover;
+        background-size: contain;
       }
       &::after {
         content: '';
@@ -381,7 +435,7 @@ export default {
         bottom: 0;
         min-width: 385px;
         background: url('@/assets/img/cats-right.png') no-repeat top center;
-        background-size: cover;
+        background-size: contain;
       }
     }
   }
@@ -406,6 +460,55 @@ export default {
 
       p:first-child {
         @extend %subtitle;
+      }
+    }
+  }
+}
+
+.form {
+  background-color: #231F20;
+  position: relative;
+  overflow: hidden;
+
+  &__bg {
+    position: absolute;
+    width: 672px;
+    top: 0;
+    right: 0;
+    transform: translate(9.52%, 0);
+  }
+
+  &__container {
+    display: flex;
+    position: relative;
+  }
+
+  &__pic {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 52.34%;
+    img {
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__el {
+    width: 100%;
+    max-width: 41%;
+    padding-top: 77px;
+    padding-bottom: 64px;
+    &--title {
+      @extend %title;
+      margin-bottom: .797em;
+    }
+    &--form {
+      &__group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 40px;
       }
     }
   }
