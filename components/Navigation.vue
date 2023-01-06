@@ -2,12 +2,12 @@
   <nav class="nav">
     <div class="container nav__container">
         <a href="/" v-scroll-to="'#app'"><img style="width: 154px" src="@/assets/img/logo-cursive.svg" alt="British Bro logo"></a>
-        <div class="nav__inner">
+        <!-- <div class="nav__inner">
             <a :href="`#${it.anchor}`" v-scroll-to="`#${it.anchor}`" v-for="it in menuItems" :key="it.anchor">
                 {{it.text}}
             </a>
             <button class="btn small btn-outline btn-outline-yellow">ПОЛУЧИТЬ ПРЕДЛОЖЕНИЕ</button>
-        </div>
+        </div> -->
     </div>
   </nav>
 </template>
@@ -30,6 +30,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@/assets/style/variables';
+
     .nav {
         background-color: black;
         position: fixed;
@@ -44,6 +46,11 @@ export default {
             align-items: center;
             justify-content: space-between;
             gap: 87px;
+
+            @media screen and (max-width: $--screen-lg) {
+                min-height: 87px;
+                justify-content: center;
+            }
         }
 
         &__inner {

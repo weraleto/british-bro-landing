@@ -2,12 +2,20 @@
     font-size: 64px;
     font-family: $--font-family-heading;
     font-weight: normal;
+
+    @media screen and (max-width: $--screen-sm) {
+        font-size: 36px;
+    }
 }
 
 %subtitle {
     font-size: 32px;
     font-family: $--font-family-heading;
     font-weight: normal;
+
+    @media screen and (max-width: $--screen-sm) {
+        font-size: 20px;
+    }
 }
 
 %textCenter {

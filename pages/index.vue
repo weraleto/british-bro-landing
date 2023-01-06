@@ -4,6 +4,7 @@
     <main class="main">
       <header class="header">
         <div class="container header__container">
+          <small>с 2018 г. в Санкт-Петербурге</small>
           <div class="header__text">
             <h1 class="header__text--title">
               Открой свою кофейню с прибылью 
@@ -13,7 +14,6 @@
             <p>Дарим 150 000 ₽ на открытие!</p>
             <button class="btn btn-yellow large">Получить предложение</button>
           </div>
-          <small>с 2018 г. в Санкт-Петербурге</small>
           <div class="header__picture">
             <img src="@/assets/img/cup.png" alt="Фирменные стаканы">
           </div>
@@ -23,19 +23,21 @@
         <div class="wbb__bg-text"></div>
         <div class="container">
           <h2 class="wbb__title">ПОЧЕМУ <span class="highlight">BRITISH BRO COFFEE?</span></h2>
-          <div class="wbb__container">
-            <div class="wbb__item" v-for="(it, i) in wbbData" :key="i">
-              <div class="wbb__item--icon">
-                <img :src="require(`@/assets/img/${it.img}.svg`)" :alt="it.title">
-              </div>
-              <h3 class="wbb__item--title">{{it.title}}
-                <a v-if="it.has_btn" :href="it.btn_link" target="_blank">
-                  <button class="btn extra-small btn-outline btn-outline-white wbb__item--more">посмотреть</button>
-                </a>
-              </h3>
-              <p class="wbb__item--text">{{it.text}}</p>
-            </div>
-          </div>
+          <client-only>
+            <swiper ref="advantagesSwiper" class="wbb__container" :options="swiperOptions">
+                <swiper-slide class="wbb__item" v-for="(it, i) in wbbData" :key="i">
+                  <div class="wbb__item--icon">
+                    <img :src="require(`@/assets/img/${it.img}.svg`)" :alt="it.title">
+                  </div>
+                  <h3 class="wbb__item--title">{{it.title}}
+                    <a v-if="it.has_btn" :href="it.btn_link" target="_blank">
+                      <button class="btn extra-small btn-outline btn-outline-white wbb__item--more">посмотреть</button>
+                    </a>
+                  </h3>
+                  <p class="wbb__item--text">{{it.text}}</p>
+                </swiper-slide>
+            </swiper>
+          </client-only>
         </div>
       </section>
 
@@ -179,8 +181,15 @@
 </template>
 
 <script>
+import {
+  Swiper,
+  SwiperSlide
+} from 'vue-awesome-swiper'
 export default {
   name: 'MainPage',
+  components: {
+    Swiper, SwiperSlide
+  },
   data: () => {
     return {
       wbbData: [
@@ -224,15 +233,37 @@ export default {
         {title: 'Техническая помощь', text: 'На всех этапах работы полностью обучаем вас как руководителя и ваш персонал всем стандартам'},
         {title: 'Логотип', text: 'Мимо нашего котика равнодушно не пройти'},
         {title: 'Качество', text: 'Собственный бленд-кофе готовим только из лучших ингридиентов. Совместно тестируем новые позиции.'},
-      ]
+      ],
+      swiperOptions: {
+        slidesPerGroup: 1,
+        breakpoints: {
+          0: {
+            slidesPerView: 1,
+          },
+          600: {
+            slidesPerView: 2,
+          },
+          767: {
+            slidesPerView: 3,
+          },
+          991: {
+            enabled: false,
+            allowSlideNext: false,
+            allowSlidePrev: false,
+            allowTouchMove: false,
+          },
+
+        }
+      }
     }
-  }
+  },
 }
 </script>
 
 <style lang="scss">
 @import '@/assets/style/variables';
 @import '@/assets/style/extensions';
+@import 'swiper/components/core/core';
 
 #app {
   max-width: 100vw;
@@ -249,6 +280,16 @@ export default {
   &__container {
     position: relative;
 
+    &::before {
+      position: absolute;
+      width: 126.93vw;
+      height: 126.93vw;
+      background: $--color-violet;
+      border-radius: 50%;
+      bottom: calc(60% + 35px);
+      right: 36%;
+    }
+
     small {
       position: absolute;
       top: 0;
@@ -256,6 +297,29 @@ export default {
       color: #120A2F;
       font-weight: 300;
       font-size: 1rem;
+    }
+    @media screen and (max-width: $--screen-lg) {
+      small {
+        right: 1rem;
+      }
+    }
+
+    @media screen and (max-width: $--screen-sm) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      small {
+        left: 1rem;
+        right: auto;
+        color: white;
+        font-size: .75rem;
+        top: 0px;
+        transform: translate(0, -150%);
+      }
+      &::before {
+        content: '';
+      }
     }
   }
 
@@ -266,10 +330,24 @@ export default {
     top: 0;
     z-index: 2;
     transform: translate(65px, 40px);
+    @media screen and (max-width: $--screen-lg) {
+      width: 43.48%;
+      transform: translate(-10%, 7%);
+    }
+    @media screen and (max-width: $--screen-sm) {
+      position: relative;
+      transform: none;
+      margin-top: 30px;
+    }
+    @media screen and (max-width: $--screen-xs) {
+      width: 90%;
+    }
   }
 
   &__text {
     max-width: 46.89%;
+    position: relative;
+    z-index: 2;
 
     &--title {
       font-size: 48px;
@@ -293,15 +371,82 @@ export default {
         margin-bottom: 2em;
       }
     }
+    @media screen and (max-width: $--screen-lg) {
+      &--title {
+        font-size: 3.33vw;
+      }
+      p {
+        font-size: 1rem;
+      }
+    }
+    @media screen and (max-width: $--screen-sm) {
+      max-width: 375px;
+      &--title {
+        font-size: 28px;
+      }
+    }
+    @media screen and (max-width: $--screen-xxs) {
+      &--title {
+        font-size: 22px;
+      }
+    }
+  }
+
+  &::before {
+    position: absolute;
+    width: 59.2vw;
+    height: 59.2vw;
+    background: #88385E;
+    border-radius: 50%;
+    bottom: 0;
+    right: 0;
+    transform: translate(20%, 25%);
+  }
+  &::after {
+    position: absolute;
+    width: 120vw;
+    height: 50vw;
+    background: $--color-violet;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    transform: translate(-10%, 50%) rotate(6deg);
   }
 
   @media screen and (min-width: 1441px) {
     background-size: auto 150%;
   }
+  @media screen and (max-width: $--screen-lg) {
+    min-height: 44.51vw;
+    padding: 35px 0;
+  }
+  @media screen and (max-width: $--screen-sm) {
+    background: $--color-violet-dark;
+    position: relative;
+    overflow: hidden;
+    &::before, &::after {
+      content: '';
+    }
+  }
+  @media screen and (max-width: $--screen-xs) {
+    &::after {
+      transform: translate(-10%, 32%) rotate(6deg);
+    }
+    &::before {
+      width: 90vw;
+      height: 90vw;
+      transform: translate(53%, 0%);
+      // bottom: 70%;
+    }
+  }
 }
 
 .main {
   margin-top: 122px;
+  @media screen and (max-width: $--screen-lg) {
+    margin-top: 87px;
+  }
 }
 
 .wbb {
@@ -319,20 +464,24 @@ export default {
       color: $--color-colar;
     }
   }
-  &__container {
-    margin-top: 58px;
-    max-width: 1037px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    row-gap: 50px;
-    column-gap: 40px;
-    z-index: 2;
-    position: relative;
+  &__container, .swiper-wrapper {
+    @media screen and (min-width: calc($--screen-md + 1px)) {
+      margin-top: 58px;
+      max-width: 1037px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      row-gap: 50px;
+      column-gap: 40px;
+      z-index: 2;
+      position: relative;
+      overflow: visible;
+    }
+    @media screen and (max-width: $--screen-sm) {
+      max-width: 63.73%;
+    }
   }
   &__item {
-    flex: 0 1 30%;
-
     &--title {
       @extend %subtitle;
       margin-top: 1em;
@@ -355,6 +504,27 @@ export default {
         object-fit: contain;
       }
     }
+    @media screen and (min-width: calc($--screen-md + 1px)) {
+      flex: 0 1 30%;
+    }
+    @media screen and (max-width: $--screen-md) {
+      text-align: center;
+      &--icon img {
+        margin: auto;
+        width: 80px;
+        height: 80px;
+      }
+      &--more {
+        position: static;
+        transform: none;
+      }
+      &--title {
+        a {
+          display: block;
+          margin-top: 5px;
+        }
+      }
+    }
   }
   &__bg-text {
     z-index: 1;
@@ -365,6 +535,21 @@ export default {
     width: 211px;
     background: url('@/assets/img/why.svg') no-repeat center center;
     background-size: contain;
+  }
+
+  @media screen and (max-width: $--screen-md) {
+    &__bg-text {
+      display: none;
+    }
+    &__title {
+      margin-bottom: 1em;
+    }
+  }
+  @media screen and (max-width: $--screen-sm) {
+    padding-top: 30px;
+    &__title {
+      text-align: center;
+    }
   }
 }
 
