@@ -24,19 +24,35 @@
         <div class="container">
           <h2 class="wbb__title">ПОЧЕМУ <span class="highlight">BRITISH BRO COFFEE?</span></h2>
           <client-only>
-            <swiper ref="advantagesSwiper" class="wbb__container" :options="swiperOptions">
-                <swiper-slide class="wbb__item" v-for="(it, i) in wbbData" :key="i">
-                  <div class="wbb__item--icon">
-                    <img :src="require(`@/assets/img/${it.img}.svg`)" :alt="it.title">
-                  </div>
-                  <h3 class="wbb__item--title">{{it.title}}
-                    <a v-if="it.has_btn" :href="it.btn_link" target="_blank">
-                      <button class="btn extra-small btn-outline btn-outline-white wbb__item--more">посмотреть</button>
-                    </a>
-                  </h3>
-                  <p class="wbb__item--text">{{it.text}}</p>
-                </swiper-slide>
-            </swiper>
+            <div style="position: relative">
+              <div class="">
+                <a href="#" class="wbb__swiper--nav wbb__swiper--prev">
+                  <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle r="22" transform="matrix(-1 0 0 1 22 22)" fill="#ED7253"/>
+                  <path d="M9.29289 21.2929C8.90237 21.6834 8.90237 22.3166 9.29289 22.7071L15.6569 29.0711C16.0474 29.4616 16.6805 29.4616 17.0711 29.0711C17.4616 28.6805 17.4616 28.0474 17.0711 27.6569L11.4142 22L17.0711 16.3431C17.4616 15.9526 17.4616 15.3195 17.0711 14.9289C16.6805 14.5384 16.0474 14.5384 15.6569 14.9289L9.29289 21.2929ZM34 21L10 21L10 23L34 23L34 21Z" fill="white"/>
+                  </svg>
+                </a>
+                <a href="#" class="wbb__swiper--nav wbb__swiper--next">
+                  <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="22" cy="22" r="22" fill="#ED7253"/>
+                  <path d="M34.7071 21.2929C35.0976 21.6834 35.0976 22.3166 34.7071 22.7071L28.3431 29.0711C27.9526 29.4616 27.3195 29.4616 26.9289 29.0711C26.5384 28.6805 26.5384 28.0474 26.9289 27.6569L32.5858 22L26.9289 16.3431C26.5384 15.9526 26.5384 15.3195 26.9289 14.9289C27.3195 14.5384 27.9526 14.5384 28.3431 14.9289L34.7071 21.2929ZM10 21L34 21L34 23L10 23L10 21Z" fill="white"/>
+                  </svg>
+                </a>
+              </div>
+              <swiper ref="advantagesSwiper" class="wbb__container" :options="swiperOptions">
+                  <swiper-slide class="wbb__item" v-for="(it, i) in wbbData" :key="i">
+                    <div class="wbb__item--icon">
+                      <img :src="require(`@/assets/img/${it.img}.svg`)" :alt="it.title">
+                    </div>
+                    <h3 class="wbb__item--title">{{it.title}}
+                      <a v-if="it.has_btn" :href="it.btn_link" target="_blank">
+                        <button class="btn extra-small btn-outline btn-outline-white wbb__item--more">посмотреть</button>
+                      </a>
+                    </h3>
+                    <p class="wbb__item--text">{{it.text}}</p>
+                  </swiper-slide>
+              </swiper>
+            </div>
           </client-only>
         </div>
       </section>
@@ -55,6 +71,7 @@
           <div class="business-model__logo">
             <img src="@/assets/img/logo.png" alt="Лого">
           </div>
+          <button @click.prevent class="btn btn-violet large business-model__btn">Получить предложение</button>
         </div>
         <div class="business-model__franshise">
             <div class="bg-navy-gradient">
@@ -134,7 +151,11 @@
         <h2 class="steps__title">ГРАФИК ОТКРЫТИЯ ВАШЕЙ КОФЕЙНИ</h2>
         <div class="container steps__container">
           <div class="steps__container--picture">
-            <img src="@/assets/img/opening-plan.png" alt="ГРАФИК ОТКРЫТИЯ ВАШЕЙ КОФЕЙНИ">
+            <picture>
+              <source media="(min-width:600px)" srcset="@/assets/img/opening-plan.png">
+              <source media="(min-width:0px)" srcset="@/assets/img/opening-plan-m.png">
+              <img src="@/assets/img/opening-plan.png" alt="ГРАФИК ОТКРЫТИЯ ВАШЕЙ КОФЕЙНИ">
+            </picture>
           </div>
         </div>  
         <div class="steps__footer">
@@ -171,7 +192,11 @@
             </form>
           </div>
           <div class="form__pic">
-            <img src="@/assets/img/form-man.png" alt="Бариста">
+            <picture>
+              <source media="(min-width:767px)" srcset="@/assets/img/form-man.png">
+              <source media="(min-width:0px)" srcset="@/assets/img/form-man-m.png">
+              <img src="@/assets/img/form-man.png" alt="Бариста">
+            </picture>
           </div>
         </div>
       </section>
@@ -220,7 +245,7 @@ export default {
           title: 'кухня', 
           text: 'Гонконгские вафли и френчдоги, десерты и выпечка - то, что увеличит вашу прибыль',
           has_btn: true,
-          btn_link: ''
+          btn_link: '/menu/food.pdf'
         },
         {
           img: 'wb5',
@@ -236,6 +261,10 @@ export default {
       ],
       swiperOptions: {
         slidesPerGroup: 1,
+        navigation: {
+          nextEl: '.wbb__swiper--next',
+          prevEl: '.wbb__swiper--prev',
+        },
         breakpoints: {
           0: {
             slidesPerView: 1,
@@ -243,9 +272,9 @@ export default {
           600: {
             slidesPerView: 2,
           },
-          767: {
-            slidesPerView: 3,
-          },
+          // 767: {
+          //   slidesPerView: 3,
+          // },
           991: {
             enabled: false,
             allowSlideNext: false,
@@ -456,6 +485,36 @@ export default {
   position: relative;
   width: 100%;
 
+  &__swiper {
+    &--nav {
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%);
+      z-index: 3;
+    }
+    &--prev {
+      left: 1rem;
+    }
+    &--next {
+      right: 1rem;
+    }
+
+    @media screen and (min-width: calc($--screen-md + 1px)) {
+      &--nav {
+        display: none;
+      }
+    }
+
+    @media screen and (max-width: $--screen-xxs) {
+      &--prev {
+        left: 0;
+      }
+      &--next {
+        right: 0;
+      }
+    }
+  }
+
   &__title {
     @extend %title;
     font-weight: 400;
@@ -477,7 +536,7 @@ export default {
       position: relative;
       overflow: visible;
     }
-    @media screen and (max-width: $--screen-sm) {
+    @media screen and (max-width: $--screen-md) {
       max-width: 63.73%;
     }
   }
@@ -490,9 +549,9 @@ export default {
     }
     &--more {
       position: absolute;
-      top: 50%;
+      top: 0%;
       left: calc(100% + 19px);
-      transform: translate(0, -50%);
+      // transform: translate(0, -50%);
     }
     &--text {
       margin-top: 1em;
@@ -507,16 +566,18 @@ export default {
     @media screen and (min-width: calc($--screen-md + 1px)) {
       flex: 0 1 30%;
     }
+    @media screen and (max-width: $--screen-lg) {
+      &--more {
+        position: static;
+        transform: none;
+      }
+    }
     @media screen and (max-width: $--screen-md) {
       text-align: center;
       &--icon img {
         margin: auto;
         width: 80px;
         height: 80px;
-      }
-      &--more {
-        position: static;
-        transform: none;
       }
       &--title {
         a {
@@ -537,6 +598,18 @@ export default {
     background-size: contain;
   }
 
+  &::before {
+    position: absolute;
+    width: 120vw;
+    height: 12vw;
+    background: $--color-violet-dark;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    transform: translate(-10%, 50%) rotate(-5deg);
+  }
+
   @media screen and (max-width: $--screen-md) {
     &__bg-text {
       display: none;
@@ -547,8 +620,12 @@ export default {
   }
   @media screen and (max-width: $--screen-sm) {
     padding-top: 30px;
+    padding-bottom: 80px;
     &__title {
       text-align: center;
+    }
+    &::before {
+      content: '';   
     }
   }
 }
@@ -582,6 +659,77 @@ export default {
       margin-bottom: 45px;
     }
   }
+  @media screen and (max-width: $--screen-lg) {
+    &__picture {
+      left: 1rem;
+    }
+  }
+  @media screen and (max-width: $--screen-md) {
+    &__text {
+      &--title {
+        font-size: 36px;
+      }
+    }
+  }
+  @media screen and (max-width: $--screen-sm) {
+    padding: 0;
+    position: relative;
+    &__container {
+      justify-content: flex-start;
+      max-height: unset;
+    }
+    &__text {
+      max-width: 100%;
+      padding-bottom: 35px;
+      padding-top: 50px;
+      &--title {
+        text-align: left;
+        max-width: 50%;
+        font-size: 24px;
+      }
+    }
+    &__picture {
+      width: 40%;
+      bottom: auto;
+      left: auto;
+      right: 1.6rem;
+      top: 0;
+      transform: translate(0, -45%);
+    }
+    &::before {
+      content: "";
+      width: 120vw;
+      height: 22vw;
+      left: 0;
+      right: 0;
+      bottom: 100%;
+      position: absolute;
+      background-color: #120A2F;
+      transform: translate(0, 47%) rotate(-11deg);
+    }
+  }
+  @media screen and (max-width: $--screen-xs) {
+    &__text {
+      &--title {
+        font-size: 16px;
+        max-width: 40%;
+      }
+    }
+    &__picture {
+      right: 1rem;
+      width: 55%;
+    }
+  }
+  @media screen and (max-width: $--screen-xxs) {
+    &__text {
+      &--title {
+        max-width: 45%;
+      }
+    }
+    &__picture {
+      width: 45%;
+    }
+  }
 }
 
 .steps {
@@ -603,7 +751,6 @@ export default {
       margin-bottom: 29px;
 
       &::before {
-        content: '';
         position: absolute;
         right: 100%;
         top: 0;
@@ -613,7 +760,6 @@ export default {
         background-size: contain;
       }
       &::after {
-        content: '';
         position: absolute;
         left: 102%;
         top: 0;
@@ -621,6 +767,11 @@ export default {
         min-width: 385px;
         background: url('@/assets/img/cats-right.png') no-repeat top center;
         background-size: contain;
+      }
+      @media screen and (min-width: calc($--screen-sm + 1px)) {
+        &::before, &::after {
+          content: '';
+        }
       }
     }
   }
@@ -647,6 +798,15 @@ export default {
         @extend %subtitle;
       }
     }
+    @media screen and (max-width: $--screen-md) {
+      &::after {
+        width: 200%;
+      }
+    }
+  }
+
+  @media screen and (max-width: $--screen-sm) {
+    padding-top: 1.5rem;
   }
 }
 
@@ -661,11 +821,25 @@ export default {
     top: 0;
     right: 0;
     transform: translate(9.52%, 0);
+    @media screen and (max-width: $--screen-lg) {
+      width: 55vw;
+      top: auto;
+      bottom: 0;
+      transform: translate(9.52%, -10%);
+    }
+    @media screen and (max-width: $--screen-sm) {
+      display: none;
+    }
   }
 
   &__container {
     display: flex;
     position: relative;
+
+    @media screen and (max-width: $--screen-sm) {
+      flex-direction: column-reverse;
+      padding: 0;
+    }
   }
 
   &__pic {
@@ -677,6 +851,14 @@ export default {
     img {
       height: 100%;
       object-fit: contain;
+    }
+
+    @media screen and (max-width: $--screen-lg) {
+      top: auto;
+    }
+    @media screen and (max-width: $--screen-sm) {
+      width: 100%;
+      position: static;
     }
   }
 
@@ -694,7 +876,17 @@ export default {
         display: flex;
         flex-direction: column;
         margin-bottom: 40px;
+
+        & > div {
+          text-align: left;
+        }
       }
+    }
+    @media screen and (max-width: $--screen-sm) {
+      max-width: 100%;
+      background-color: #1C1617;
+      padding: 2rem 1rem 42px;
+      text-align: center;
     }
   }
 }
@@ -704,6 +896,21 @@ export default {
     @extend %title;
     @extend %textCenter;
     padding: 15px 0;
+    position: relative;
+    z-index: 2;
+    @media screen and (max-width: $--screen-sm) {
+      &::before {
+        content: '';
+        position: absolute;
+        width: 120vw;
+        height: 2.3rem;
+        left: 0;
+        right: 0;
+        top: 100%;
+        background-color: $--color-violet-dark;
+        transform: rotate(2deg) translate(0, -36%);
+      }
+    }
   }
   &__container {
     min-height: 57.63vw;
@@ -712,6 +919,18 @@ export default {
 
     background: url('@/assets/img/beach-bg.jpg') no-repeat center center;
     background-size: cover;
+    @media screen and (max-width: $--screen-sm) {
+      background: url('@/assets/img/beach-bg-t.jpg') no-repeat center center;
+      background-size: cover;
+      padding-top: 3em;
+    }
+    @media screen and (max-width: $--screen-xs) {
+      padding-bottom: 17px;
+    }
+    @media screen and (max-width: $--screen-xxs) {
+      background: url('@/assets/img/beach-bg-m.jpg') no-repeat bottom center;
+      background-size: cover;
+    }
   }
   &__items {
     max-width: 1039px;
@@ -720,6 +939,13 @@ export default {
     justify-content: space-between;
     gap: 5%;
     margin-bottom: 1.458vw;
+    box-sizing: content-box;
+    padding: 0 1rem;
+
+    @media screen and (max-width: $--screen-sm) {
+      flex-direction: column;
+      gap: 1.5em;
+    }
   }
   &__item {
     flex: 1 1 22%;
@@ -728,10 +954,21 @@ export default {
       margin-bottom: 1em;
       white-space: nowrap;
     }
+    @media screen and (max-width: $--screen-sm) {
+      &--title {
+        margin-bottom: 0;
+      }
+    }
   }
   &__logo {
     max-width: 26.11vw;
     margin: auto;
+
+    @media screen and (max-width: $--screen-sm) {
+      margin-bottom: 20px;
+      margin-top: 70px;
+      max-width: 210px;
+    }
   }
 
   &__franshise {
@@ -742,6 +979,9 @@ export default {
       @extend %textCenter;
       color: $--color-violet;
       padding: 1em 0;
+      @media screen and (max-width: $--screen-xs) {
+        padding: 20px 0;
+      }
     }
 
     &--line {
@@ -751,9 +991,19 @@ export default {
       color: #120A2F;
     }
   }
+
+  &__btn {
+    margin: auto;
+    width: 100%;
+    max-width: 267px;
+    display: block;
+    @media screen and (min-width: calc($--screen-sm + 1px)) {
+      display: none;
+    }
+  }
 }
 .line1, .line2 {
-  @extend %textCenter;
+  text-align: center;
   &-item {
     flex: 1 1 33.333%;
     width: 100%;
@@ -766,6 +1016,14 @@ export default {
       font-size: 24px;
       font-family: $--font-family-heading;
       font-weight: normal;
+
+    }
+    @media screen and (max-width: $--screen-sm) {
+      text-align: left;
+      padding: 0 1rem;
+      &--subtitle {
+        font-size: 16px;
+      }
     }
   }
   .subtitle {
@@ -774,12 +1032,14 @@ export default {
 }
 .line1 {
   padding: 25px 0;
+
+  @media screen and (max-width: $--screen-xs) {
+    padding: 1rem 0;
+  }
 }
 .line2 {
   padding: 12px 0;
-  // &-item {
-  //   height: 100%;
-  // }
+
   &-item:not(:last-child) {
     position: relative;
     &::after {
@@ -789,6 +1049,12 @@ export default {
       top: 50%;
       right: 0;
       transform: translate(50%, -50%);
+    }
+  }
+  @media screen and (max-width: $--screen-sm) {
+    svg {
+      width: 14px;
+      height: 14px;
     }
   }
 }
@@ -802,12 +1068,27 @@ export default {
     gap: 13px;
     &__icon {
       max-width: 61px;
+      width: 100%;
     }
     &__text {
       &-title {
         @extend %subtitle;
       }
     }
+  }
+  @media screen and (max-width: $--screen-sm) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 22px 1.5rem 50px;
+    gap: 22px;
+    &-item {
+      &__icon {
+        max-width: 31px;
+      }
+    }
+  }
+  @media screen and (max-width: $--screen-xs) {
+    padding: 22px 1.5rem 10px;
   }
 }
 .bg-navy-gradient {

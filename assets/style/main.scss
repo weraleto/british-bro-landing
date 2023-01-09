@@ -50,6 +50,10 @@ a {
         background-color: $--color-yellow;
         color: #231F20;
     }
+    &-violet {
+        background-color: $--color-violet-dark;
+        color: white;
+    }
     &-outline {
         color: white;
         border: 1px solid ;

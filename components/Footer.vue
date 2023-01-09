@@ -65,5 +65,20 @@ export default {
         }
       }
     }
+  
+  @media screen and (max-width: $--screen-sm) {
+    &__container {
+      flex-direction: column;
+      max-width: 264px;
+    }
+    &__socials {
+      justify-content: space-between;
+      margin-bottom: 35px;
+      gap: 5px;
+    }
+    &__copyright {
+      margin-top: 22px;
+    }
+  }
 }
 </style>
