@@ -57,13 +57,12 @@ a {
     &-outline {
         color: white;
         border: 1px solid ;
+        background-color: transparent;
 
         &-yellow {
             border-color: $--color-yellow;
-            background-color: black;
         }
         &-white {
-            background-color: transparent;
             border-color: white;
             font-weight: normal;
         }

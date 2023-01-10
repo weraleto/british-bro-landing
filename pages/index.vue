@@ -165,6 +165,19 @@
           </div>
         </div>
       </section>
+      <section id="gallery">
+        <swiper :options="swiperGallery">
+          <swiper-slide>
+            <img src="@/assets/img/sw2.jpg" />
+          </swiper-slide>
+          <swiper-slide>
+            <img src="@/assets/img/sw3.jpg" />
+          </swiper-slide>
+          <swiper-slide>
+            <img src="@/assets/img/sw1.jpg" />
+          </swiper-slide>
+        </swiper>
+      </section>
 
       <section class="form" id="form">
         <div class="form__bg">
@@ -272,17 +285,20 @@ export default {
           600: {
             slidesPerView: 2,
           },
-          // 767: {
-          //   slidesPerView: 3,
-          // },
           991: {
             enabled: false,
             allowSlideNext: false,
             allowSlidePrev: false,
             allowTouchMove: false,
           },
-
         }
+      },
+      swiperGallery: {
+        slidesPerGroup: 1,
+        slidesPerView: 2,
+        centeredSlides: true,
+        navigation: false,
+        loop: true,
       }
     }
   },
