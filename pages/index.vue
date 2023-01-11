@@ -12,7 +12,9 @@
             </h1>
             <p>Давно мечтаешь о собственной кофейне? Открывайся с “British Bro”</p>
             <p>Дарим 150 000 ₽ на открытие!</p>
-            <button class="btn btn-yellow large">Получить предложение</button>
+            <button class="btn btn-yellow large" 
+              @click.prevent="$store.commit('setShowModal', true)"
+            >Получить предложение</button>
           </div>
           <div class="header__picture">
             <img src="@/assets/img/cup.png" alt="Фирменные стаканы">
@@ -71,7 +73,7 @@
           <div class="business-model__logo">
             <img src="@/assets/img/logo.png" alt="Лого">
           </div>
-          <button @click.prevent class="btn btn-violet large business-model__btn">Получить предложение</button>
+          <button @click.prevent="$store.commit('setShowModal', true)" class="btn btn-violet large business-model__btn">Получить предложение</button>
         </div>
         <div class="business-model__franshise">
             <div class="bg-navy-gradient">
@@ -142,7 +144,7 @@
           </div>
           <div class="banner__text">
             <h3 class="banner__text--title">Вы уже готовы сделать первый шаг к открытию собственной кофейни?</h3>
-            <button @click.prevent class="btn btn-white large banner__text--btn">Получить предложение</button>
+            <button @click.prevent="$store.commit('setShowModal', true)" class="btn btn-white large banner__text--btn">Получить предложение</button>
           </div>
         </div>
       </section>
@@ -188,21 +190,7 @@
             <h2 class="form__el--title">
               Присоединяйся!
             </h2>
-            <form class="form__el--form" @submit.prevent>
-              <div class="form__el--form__group">
-                <div><label for="email" class="form__el--form__label">e-mail</label></div>
-                <input id="email" name="email" type="email" class="form__el--form__input">
-              </div>
-              <div class="form__el--form__group">
-                <div><label for="phone" class="form__el--form__label">телефон</label></div>
-                <input id="phone" name="phone" type="phone" class="form__el--form__input">
-              </div>
-              <div class="form__el--form__group">
-                <div><label for="name" class="form__el--form__label">имя</label></div>
-                <input id="name" name="name" type="text" class="form__el--form__input">
-              </div>
-              <button type="submit" class="btn large btn-yellow" @click.prevent>Откройте уже мою кофейню</button>
-            </form>
+            <form-component btn-text="Откройте уже мою кофейню"></form-component>
           </div>
           <div class="form__pic">
             <picture>
@@ -213,6 +201,8 @@
           </div>
         </div>
       </section>
+
+      <form-popup></form-popup>
     </main>
     <Footer />
   </div>

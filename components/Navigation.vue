@@ -20,12 +20,14 @@
                 {{it.text}}
             </a>
             <div class="nav__inner--footer">
-                <button class="btn small btn-outline btn-outline-yellow">ПОЛУЧИТЬ ПРЕДЛОЖЕНИЕ</button>
+                <button class="btn small btn-outline btn-outline-yellow"
+                    @click.prevent="navOpened=false; $store.commit('setShowModal', true)"
+                >ПОЛУЧИТЬ ПРЕДЛОЖЕНИЕ</button>
             </div>
             <div class="nav__inner--socials">
-                <a class="nav__inner--socials__item" href="" @click.prevent><ig /></a>
-                <a class="nav__inner--socials__item" href="" @click.prevent><mail /></a>
-                <a class="nav__inner--socials__item" href="" @click.prevent><vk /></a>
+                <a class="nav__inner--socials__item" href="https://instagram.com/british_bro_coffee"><ig /></a>
+                <a class="nav__inner--socials__item" href="https://vk.com/british_bro_coffee"><mail /></a>
+                <a class="nav__inner--socials__item" href="mailto:coffee@britishbro.ru"><vk /></a>
             </div>
         </div>
     </div>

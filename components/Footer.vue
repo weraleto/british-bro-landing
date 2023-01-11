@@ -2,12 +2,12 @@
   <footer class="footer">
     <div class="container footer__container">
         <div class="footer__item footer__socials">
-          <a href="" @click.prevent><ig /></a>
-          <a href="" @click.prevent><mail /></a>
-          <a href="" @click.prevent><vk /></a>
+          <a href="https://instagram.com/british_bro_coffee"><ig /></a>
+          <a href="https://vk.com/british_bro_coffee"><mail /></a>
+          <a href="mailto:coffee@britishbro.ru"><vk /></a>
         </div>
         <div class="footer__item footer__logo">
-          <a href="/"><img src="@/assets/img/logo-small.svg" alt="Лого"></a>
+          <a href="/"><img src="@/assets/img/logo-small.png" alt="Лого"></a>
         </div>
         <div class="footer__item footer__copyright">
           <p>&#169; 2022</p>
