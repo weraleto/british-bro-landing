@@ -21,7 +21,7 @@ export default {
     ]
   },
   server: {
-    port: 8881,
+    port: 8882,
     host: '0.0.0.0',
     timing: false
   },
