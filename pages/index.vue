@@ -96,9 +96,10 @@
                     <p>площадь от 40 м2 от 1,5 млн ₽</p>
                   </div>
                 </div>
-                <div class="line2-item subtitle">400 000 <svg width="19" height="23" viewBox="0 0 19 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <div class="line2-item subtitle">
+                  <div>400 000 <svg width="19" height="23" viewBox="0 0 19 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2.78625 23V0.151999H10.0823C13.0263 0.151999 15.1703 0.749332 16.5143 1.944C17.8796 3.13866 18.5623 4.78133 18.5623 6.872C18.5623 8.10933 18.2849 9.272 17.7303 10.36C17.1756 11.448 16.2476 12.3227 14.9463 12.984C13.6663 13.6453 11.9169 13.976 9.69825 13.976H7.61825V23H2.78625ZM0.22625 19.576V16.472H12.5463V19.576H0.22625ZM0.22625 13.976V10.008H9.60225V13.976H0.22625ZM9.21825 10.008C10.1356 10.008 10.9249 9.912 11.5863 9.72C12.2476 9.50667 12.7596 9.176 13.1223 8.728C13.4849 8.28 13.6663 7.71467 13.6663 7.032C13.6663 6.05067 13.3569 5.32533 12.7383 4.856C12.1196 4.36533 11.1489 4.12 9.82625 4.12H7.61825V10.008H9.21825Z" fill="#120A2F"/>
-                </svg>
+                </svg></div>
                 </div>
                 <div class="line2-item">
                   <div class="line2-block">
@@ -167,7 +168,7 @@
           </div>
         </div>
       </section>
-      <section id="gallery">
+      <section id="gallery" class="gallery">
         <swiper :options="swiperGallery">
           <swiper-slide>
             <img src="@/assets/img/sw2.jpg" />
@@ -176,9 +177,22 @@
             <img src="@/assets/img/sw3.jpg" />
           </swiper-slide>
           <swiper-slide>
+            <img src="@/assets/img/sw4.jpg" />
+          </swiper-slide>
+          <swiper-slide>
+            <img src="@/assets/img/sw5.jpg" />
+          </swiper-slide>
+          <swiper-slide>
+            <img src="@/assets/img/sw6.jpg" />
+          </swiper-slide>
+          <swiper-slide>
+            <img src="@/assets/img/sw7.jpg" />
+          </swiper-slide>
+          <swiper-slide>
             <img src="@/assets/img/sw1.jpg" />
           </swiper-slide>
         </swiper>
+        <div class="gallery-pagination swiper-pagination-coral" slot="pagination"></div>
       </section>
 
       <section class="form" id="form">
@@ -285,10 +299,24 @@ export default {
       },
       swiperGallery: {
         slidesPerGroup: 1,
-        slidesPerView: 2,
+        
         centeredSlides: true,
         navigation: false,
         loop: true,
+        autoplay: true,
+        pagination: {
+          el: '.gallery-pagination',
+          type: 'bullets',
+          clickable: true
+        },
+        breakpoints: {
+          0: {
+            slidesPerView: 1.3,
+          },
+          480: {
+            slidesPerView: 2,
+          }
+        }
       }
     }
   },
@@ -297,13 +325,36 @@ export default {
 
 <style lang="scss">
 @import '@/assets/style/variables';
+$colors: ('white': #ffffff, 'black': #000000, 'coral': $--color-colar);
+
 @import '@/assets/style/extensions';
-@import 'swiper/components/core/core';
+// @import 'swiper/scss/bundle';
+@import 'swiper/src/swiper';
+@import 'swiper/src/components/pagination/pagination';
 
 #app {
   max-width: 100vw;
   overflow-x: hidden;
+
+  .swiper-pagination-bullet {
+    width: 28px;
+    height: 28px;
+    opacity: 1;
+    @media screen and (max-width: $--screen-xxs) {
+      width: 18px;
+      height: 18px;
+    }
+  }
+  .swiper-pagination-bullet:not(.swiper-pagination-bullet-active) {
+    background-color: #fff;
+  }
+  @each $paginationColorName, $paginationColor in $colors {
+  .swiper-pagination-#{$paginationColorName} {
+    --swiper-pagination-color: #{$paginationColor};
+  }
 }
+}
+
 
 .header {
   min-height: 641px;
@@ -747,6 +798,7 @@ export default {
     @extend %title;
     @extend %textCenter;
     color: #1E1E1E;
+    padding: 0 1em;
   }
   &__container {
     margin-top: 40px;
@@ -893,6 +945,28 @@ export default {
       background-color: #1C1617;
       padding: 2rem 1rem 42px;
       text-align: center;
+    }
+  }
+}
+
+.gallery {
+  background-color: #231F20;
+
+  &-pagination {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    gap: 20px;
+  }
+
+  .swiper-slide {
+    @media screen and (max-width: 480px) {
+      min-height: 268px; 
+      img {
+        object-fit: cover;
+        height: 268px; 
+        width: 100%;
+      }
     }
   }
 }
@@ -1046,6 +1120,16 @@ export default {
 .line2 {
   padding: 12px 0;
 
+  &-item {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    justify-content: space-between;
+  }
+  &-item:nth-child(2) {
+    justify-content: center;
+  }
+
   &-item:not(:last-child) {
     position: relative;
     &::after {
@@ -1102,6 +1186,7 @@ export default {
 }
 .bg-light-yellow {
   background: $--color-yellow-light;
+  display: flex;
 }
 .bg-coral-gradient {
   background: linear-gradient(to bottom, #ae865d, #F07352);
