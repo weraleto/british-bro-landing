@@ -75,7 +75,7 @@
           </div>
           <button @click.prevent="$store.commit('setShowModal', true)" class="btn btn-violet large business-model__btn">Получить предложение</button>
         </div>
-        <div class="business-model__franshise">
+        <div class="business-model__franshise" id="investments">
             <div class="bg-navy-gradient">
               <h2 class="business-model__franshise--title">франшиза BRITISH BRO</h2>
               <div class="business-model__franshise--line line1 container">
@@ -150,7 +150,7 @@
         </div>
       </section>
 
-      <section class="steps" id="investments">
+      <section class="steps">
         <h2 class="steps__title">ГРАФИК ОТКРЫТИЯ ВАШЕЙ КОФЕЙНИ</h2>
         <div class="container steps__container">
           <div class="steps__container--picture">
@@ -1119,6 +1119,7 @@ $colors: ('white': #ffffff, 'black': #000000, 'coral': $--color-colar);
 }
 .line2 {
   padding: 12px 0;
+  width: 100%;
 
   &-item {
     display: flex;
@@ -1187,6 +1188,7 @@ $colors: ('white': #ffffff, 'black': #000000, 'coral': $--color-colar);
 .bg-light-yellow {
   background: $--color-yellow-light;
   display: flex;
+  width: 100%;
 }
 .bg-coral-gradient {
   background: linear-gradient(to bottom, #ae865d, #F07352);
