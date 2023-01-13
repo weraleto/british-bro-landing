@@ -325,11 +325,8 @@ export default {
 
 <style lang="scss">
 @import '@/assets/style/variables';
-$colors: ('white': #ffffff, 'black': #000000, 'coral': $--color-colar);
-
 @import '@/assets/style/extensions';
-// @import 'swiper/scss/bundle';
-@import 'swiper/src/swiper';
+@import 'swiper/src/components/core/core';
 @import 'swiper/src/components/pagination/pagination';
 
 #app {
@@ -348,11 +345,6 @@ $colors: ('white': #ffffff, 'black': #000000, 'coral': $--color-colar);
   .swiper-pagination-bullet:not(.swiper-pagination-bullet-active) {
     background-color: #fff;
   }
-  @each $paginationColorName, $paginationColor in $colors {
-  .swiper-pagination-#{$paginationColorName} {
-    --swiper-pagination-color: #{$paginationColor};
-  }
-}
 }
 
 
