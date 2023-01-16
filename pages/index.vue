@@ -196,9 +196,6 @@
       </section>
 
       <section class="form" id="form">
-        <div class="form__bg">
-          <img src="@/assets/img/logo-black.png" alt="Лого на черном фоне">
-        </div>
         <div class="container form__container">
           <div class="form__el">
             <h2 class="form__el--title">
@@ -207,7 +204,10 @@
             <form-component btn-text="Откройте уже мою кофейню"></form-component>
           </div>
           <div class="form__pic">
-            <picture>
+            <div class="form__bg">
+              <img src="@/assets/img/logo-black.png" alt="Лого на черном фоне">
+            </div>
+            <picture style="position: relative; z-index: 2">
               <source media="(min-width:767px)" srcset="@/assets/img/form-man.png">
               <source media="(min-width:0px)" srcset="@/assets/img/form-man-m.png">
               <img src="@/assets/img/form-man.png" alt="Бариста">
@@ -870,12 +870,9 @@ export default {
     width: 672px;
     top: 0;
     right: 0;
-    transform: translate(9.52%, 0);
+    transform: translate(45%, 0);
     @media screen and (max-width: $--screen-lg) {
       width: 55vw;
-      top: auto;
-      bottom: 0;
-      transform: translate(9.52%, -10%);
     }
     @media screen and (max-width: $--screen-sm) {
       display: none;
@@ -903,7 +900,7 @@ export default {
       object-fit: contain;
     }
 
-    @media screen and (max-width: $--screen-lg) {
+    @media screen and (max-width: 1099px) {
       top: auto;
     }
     @media screen and (max-width: $--screen-sm) {
