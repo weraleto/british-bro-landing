@@ -1084,6 +1084,7 @@ export default {
     &--subtitle {
       font-size: 24px;
       font-family: $--font-family-heading;
+      font-feature-settings: 'pnum' on, 'lnum' on;
       font-weight: normal;
 
     }

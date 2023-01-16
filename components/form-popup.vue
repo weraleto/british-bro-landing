@@ -38,6 +38,7 @@ $--dialog-padding-primary: 28px;
 
 .el-dialog__title {
     font-family: $--font-family-heading;
+    font-feature-settings: 'pnum' on, 'lnum' on;
 }
 
 .el-dialog--center .el-dialog__body {
