@@ -11,7 +11,8 @@
         </div>
         <div class="footer__item footer__copyright">
           <p>&#169; 2022</p>
-          <p>ИП Фамилия И.О. <a href="" @click.prevent>Правовая информация</a></p>
+          <p>ИП Хаткевич Алексей Валерьевич</p>
+          <p><a href="" @click.prevent>Правовая информация</a></p>
         </div>
     </div>
   </footer>
@@ -46,9 +47,15 @@ export default {
     }
 
     &__logo {
+      filter: grayscale(1);
+      transition: all .3s ease;
       img {
         width: 90px;
         margin: auto;
+      }
+
+      &:hover {
+        filter: grayscale(0);
       }
     }
 

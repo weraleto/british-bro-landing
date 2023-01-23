@@ -4,15 +4,29 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'british-bro',
+    title: 'British Bro',
     htmlAttrs: {
       lang: 'ru'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'Открой свою кофейню с прибылью от 110 000 ₽' },
       { name: 'format-detection', content: 'telephone=no' },
+
+      {
+        property: 'og:title',
+        content: 'British Bro',
+        vmid: 'og:title',
+        hid: 'og:title'
+      },
+      {
+        property: 'og:description',
+        content: 'Открой свою кофейню с прибылью от 110 000 ₽',
+        vmid: 'og:description',
+        hid: 'og:description'
+      },
+
       // remove next line before production deploy
       { name: 'robots', content: 'noindex, nofollow' },
     ],

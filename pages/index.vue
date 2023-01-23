@@ -11,13 +11,18 @@
               <span>от 110 000 ₽</span>
             </h1>
             <p>Давно мечтаешь о собственной кофейне? Открывайся с “British Bro”</p>
-            <p>Дарим 150 000 ₽ на открытие!</p>
+            <p><b>Дарим 150 000 ₽ на открытие!</b></p>
             <button class="btn btn-yellow large" 
               @click.prevent="$store.commit('setShowModal', true)"
             >Получить предложение</button>
           </div>
           <div class="header__picture">
-            <img src="@/assets/img/cup.png" alt="Фирменные стаканы">
+            <picture>
+              <source media="(min-width: 1600px)" srcset="@/assets/img/cup2x.png">
+              <source media="(min-width: 500px)" srcset="@/assets/img/cup.png">
+              <source media="(min-width: 0px)" srcset="@/assets/img/cup0.5x.png">
+              <img src="@/assets/img/cup.png" alt="Фирменные стаканы">
+            </picture>
           </div>
         </div>
       </header>
@@ -448,6 +453,10 @@ export default {
       &:last-of-type {
         margin-bottom: 2em;
       }
+    }
+    b {
+      font-weight: 800;
+      color: $--color-yellow;
     }
     @media screen and (max-width: $--screen-lg) {
       &--title {
