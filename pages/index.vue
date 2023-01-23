@@ -331,7 +331,7 @@ export default {
 <style lang="scss">
 @import '@/assets/style/variables';
 @import '@/assets/style/extensions';
-@import 'swiper/src/components/core/core';
+@import 'swiper/src/swiper';
 @import 'swiper/src/components/pagination/pagination';
 
 #app {
