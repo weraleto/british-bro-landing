@@ -578,7 +578,7 @@ export default {
     font-weight: 400;
 
     .highlight {
-      color: $--color-colar;
+      color: $--color-coral;
     }
   }
   &__container, .swiper-wrapper {
