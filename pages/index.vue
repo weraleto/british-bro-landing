@@ -283,6 +283,7 @@ export default {
       ],
       swiperOptions: {
         slidesPerGroup: 1,
+        loop: true,
         navigation: {
           nextEl: '.wbb__swiper--next',
           prevEl: '.wbb__swiper--prev',
