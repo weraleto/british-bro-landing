@@ -46,19 +46,20 @@
                   </svg>
                 </a>
               </div>
-              <swiper ref="advantagesSwiper" class="wbb__container" :options="swiperOptions">
-                  <swiper-slide class="wbb__item" v-for="(it, i) in wbbData" :key="i">
-                    <div class="wbb__item--icon">
-                      <img :src="require(`@/assets/img/${it.img}.svg`)" :alt="it.title">
-                    </div>
-                    <h3 class="wbb__item--title">{{it.title}}
-                      <a v-if="it.has_btn" :href="it.btn_link" target="_blank">
-                        <button class="btn extra-small btn-outline btn-outline-white wbb__item--more">посмотреть</button>
-                      </a>
-                    </h3>
-                    <p class="wbb__item--text">{{it.text}}</p>
-                  </swiper-slide>
-              </swiper>
+                <swiper ref="advantagesSwiper" class="wbb__container" :options="swiperOptions">
+                    <swiper-slide class="wbb__item" v-for="(it, i) in wbbData" :key="i">
+                      <div class="wbb__item--icon">
+                        <img :src="require(`@/assets/img/${it.img}.svg`)" :alt="it.title">
+                      </div>
+                      <h3 class="wbb__item--title">{{it.title}}
+                        <a v-if="it.has_btn" :href="it.btn_link" target="_blank">
+                          <button class="btn extra-small btn-outline btn-outline-white wbb__item--more">посмотреть</button>
+                        </a>
+                      </h3>
+                      <p class="wbb__item--text">{{it.text}}</p>
+                    </swiper-slide>
+                </swiper>
+              </client-only>
             </div>
           </client-only>
         </div>
@@ -283,7 +284,6 @@ export default {
       ],
       swiperOptions: {
         slidesPerGroup: 1,
-        loop: true,
         navigation: {
           nextEl: '.wbb__swiper--next',
           prevEl: '.wbb__swiper--prev',
@@ -291,12 +291,15 @@ export default {
         breakpoints: {
           0: {
             slidesPerView: 1,
+            loop: true,
           },
           600: {
             slidesPerView: 2,
+            loop: true,
           },
           991: {
             enabled: false,
+            loop: false,
             allowSlideNext: false,
             allowSlidePrev: false,
             allowTouchMove: false,
