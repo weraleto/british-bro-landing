@@ -46,8 +46,13 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/element-ui'
+    '@/plugins/element-ui',
   ],
+  
+  serverMiddleware: [
+    '~/api/contact.js'
+  ],
+
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -61,10 +66,11 @@ export default {
     ['vue-scrollto/nuxt', {
       offset: -200
     }],
+    '@nuxtjs/axios',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: [/^element-ui/],
+    transpile: [/^element-ui/, 'maska'],
   }
 }
