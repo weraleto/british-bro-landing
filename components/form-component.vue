@@ -72,7 +72,8 @@
                 this.$refs.form.validate(async (valid) => {
                     if (valid) {
                         try {
-                            const res = await this.$axios.post('/api/call_request/', this.form)
+                            const hostname = window.location.origin
+                            const res = await this.$axios.post(hostname+'/api/call_request/', this.form)
                             title = 'Спасибо за заявку!'
                             message = 'Скоро наш менеджер перезвонит вам'
                             type = 'success'
