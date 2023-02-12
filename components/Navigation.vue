@@ -26,8 +26,8 @@
             </div>
             <div class="nav__inner--socials">
                 <a class="nav__inner--socials__item" href="https://instagram.com/british_bro_coffee"><ig /></a>
-                <a class="nav__inner--socials__item" href="https://vk.com/british_bro_coffee"><mail /></a>
-                <a class="nav__inner--socials__item" href="mailto:coffee@britishbro.ru"><vk /></a>
+                <a class="nav__inner--socials__item" href="https://vk.com/british_bro_coffee"><vk /></a>
+                <a class="nav__inner--socials__item" href="mailto:coffee@britishbro.ru"><mail /></a>
             </div>
         </div>
     </div>

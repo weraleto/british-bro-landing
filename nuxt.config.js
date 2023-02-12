@@ -1,6 +1,4 @@
 export default {
-  // Target: https://go.nuxtjs.dev/config-target
-  target: 'static',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -37,11 +35,6 @@ export default {
       { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
       { rel: 'manifest', href: '/site.webmanifest' },
     ]
-  },
-  server: {
-    port: 8882,
-    host: '0.0.0.0',
-    timing: false
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

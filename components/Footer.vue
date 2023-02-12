@@ -3,8 +3,8 @@
     <div class="container footer__container">
         <div class="footer__item footer__socials">
           <a href="https://instagram.com/british_bro_coffee"><ig /></a>
-          <a href="https://vk.com/british_bro_coffee"><mail /></a>
-          <a href="mailto:coffee@britishbro.ru"><vk /></a>
+          <a href="https://vk.com/british_bro_coffee"><vk /></a>
+          <a href="mailto:coffee@britishbro.ru"><mail /></a>
         </div>
         <div class="footer__item footer__logo">
           <a href="/"><img src="@/assets/img/logo-small.png" alt="Лого"></a>
