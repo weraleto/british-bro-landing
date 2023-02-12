@@ -1,10 +1,10 @@
 <template>
   <el-dialog :visible.sync="showApplyForm"
     :center="true"
+    @closed="handleDialogClose"
     title="Получить предложение"
   >
-    <!-- <div class="el-dialog--close"></div> -->
-    <form-component btn-text="Отправить"></form-component>
+    <form-component ref="form" btn-text="Отправить"></form-component>
   </el-dialog>
 </template>
 
@@ -20,6 +20,11 @@ export default {
                 this.$store.commit('setShowModal', val)
             }
             
+        }
+    },
+    methods: {
+        handleDialogClose() {
+            this.$refs.form.resetForm()
         }
     }
 

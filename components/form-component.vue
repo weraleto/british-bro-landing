@@ -67,6 +67,9 @@
             }
         },
         methods: {
+            resetForm() {
+                this.$refs.form.resetFields();
+            },
             async submitForm() {
                 let message, title, type;
                 this.$refs.form.validate(async (valid) => {
@@ -77,7 +80,7 @@
                             title = 'Спасибо за заявку!'
                             message = 'Скоро наш менеджер перезвонит вам'
                             type = 'success'
-                            this.$refs.form.resetFields();
+                            this.resetForm();
 
                         } catch (e) {
                             title = 'Произошла ошибка!'
