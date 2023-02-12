@@ -59,7 +59,6 @@
                       <p class="wbb__item--text">{{it.text}}</p>
                     </swiper-slide>
                 </swiper>
-              </client-only>
             </div>
           </client-only>
         </div>
