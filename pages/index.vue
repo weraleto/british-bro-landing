@@ -11,7 +11,7 @@
               <span>от 110 000 ₽</span>
             </h1>
             <p>Давно мечтаешь о собственной кофейне? Открывайся с “British Bro”</p>
-            <p><b>Дарим 150 000 ₽ на открытие!</b></p>
+            <p><b>Дарим {{(+common.opening_discount).toLocaleString()}} ₽ на открытие!</b></p>
             <button class="btn btn-yellow large" 
               @click.prevent="$store.commit('setShowModal', true)"
             >Получить предложение</button>
@@ -102,7 +102,7 @@
                   </div>
                 </div>
                 <div class="line2-item subtitle">
-                  <div>400 000 <svg width="19" height="23" viewBox="0 0 19 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <div>{{(+common.lump_sum).toLocaleString()}} <svg width="19" height="23" viewBox="0 0 19 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2.78625 23V0.151999H10.0823C13.0263 0.151999 15.1703 0.749332 16.5143 1.944C17.8796 3.13866 18.5623 4.78133 18.5623 6.872C18.5623 8.10933 18.2849 9.272 17.7303 10.36C17.1756 11.448 16.2476 12.3227 14.9463 12.984C13.6663 13.6453 11.9169 13.976 9.69825 13.976H7.61825V23H2.78625ZM0.22625 19.576V16.472H12.5463V19.576H0.22625ZM0.22625 13.976V10.008H9.60225V13.976H0.22625ZM9.21825 10.008C10.1356 10.008 10.9249 9.912 11.5863 9.72C12.2476 9.50667 12.7596 9.176 13.1223 8.728C13.4849 8.28 13.6663 7.71467 13.6663 7.032C13.6663 6.05067 13.3569 5.32533 12.7383 4.856C12.1196 4.36533 11.1489 4.12 9.82625 4.12H7.61825V10.008H9.21825Z" fill="#120A2F"/>
                 </svg></div>
                 </div>
@@ -112,7 +112,7 @@
                     <p>первые 3 месяца</p>
                   </div>
                   <div class="line2-block">
-                    <h5 class="line2-block--subtitle">3% от оборота</h5>
+                    <h5 class="line2-block--subtitle">{{common.royalty}}</h5>
                     <p>с четвертого месяца работы</p>
                   </div>
                 </div>
@@ -223,7 +223,7 @@
 
       <form-popup></form-popup>
     </main>
-    <Footer />
+    <Footer :data="common" />
   </div>
 </template>
 
@@ -325,9 +325,17 @@ export default {
             slidesPerView: 2,
           }
         }
-      }
+      },
+      common: {}
     }
   },
+  async asyncData({ app }) {
+    const { data } = await app.$axios.get('http://s1.a060aa0p.beget.tech/api/common/')
+    console.log(data)
+    return {
+      common: data.data.attributes
+    }
+  }
 }
 </script>
 

@@ -11,7 +11,7 @@
         </div>
         <div class="footer__item footer__copyright">
           <p>&#169; 2022</p>
-          <p>ИП Хаткевич Алексей Валерьевич</p>
+          <p>{{data.ooo_name}}</p>
           <p><a href="" @click.prevent>Правовая информация</a></p>
         </div>
     </div>
@@ -20,7 +20,9 @@
 
 <script>
 export default {
-
+  props: {
+    data: Object
+  }
 }
 </script>
 
