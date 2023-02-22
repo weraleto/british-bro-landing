@@ -61,12 +61,22 @@ export default {
   buildModules: [
   ],
 
+  axios: {
+    proxy: true
+  },
+  proxy: {
+    // !==
+    '/api': process.env.STRAPI_URI,
+    '/uploads': process.env.STRAPI_URI,
+  },
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     ['vue-scrollto/nuxt', {
       offset: -200
     }],
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

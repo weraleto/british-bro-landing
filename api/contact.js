@@ -51,6 +51,6 @@ app.post('/call_request/', (req, res) => {
 })
 
 export default {
-  path: '/api/',
+  path: '/send/',
   handler: app
 }

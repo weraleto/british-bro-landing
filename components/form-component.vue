@@ -76,7 +76,7 @@
                     if (valid) {
                         try {
                             const hostname = window.location.origin
-                            const res = await this.$axios.post(hostname+'/api/call_request/', this.form)
+                            const res = await this.$axios.post(hostname+'/send/call_request/', this.form)
                             title = 'Спасибо за заявку!'
                             message = 'Скоро наш менеджер перезвонит вам'
                             type = 'success'

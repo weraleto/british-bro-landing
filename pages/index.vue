@@ -47,7 +47,7 @@
                 </a>
               </div>
                 <swiper ref="advantagesSwiper" class="wbb__container" :options="swiperOptions">
-                    <swiper-slide class="wbb__item" v-for="(it, i) in wbbData" :key="i">
+                    <swiper-slide class="wbb__item" v-for="(it, i) in wbbFormatted" :key="i">
                       <div class="wbb__item--icon">
                         <img :src="require(`@/assets/img/${it.img}.svg`)" :alt="it.title">
                       </div>
@@ -146,7 +146,7 @@
       <section class="banner" id="promo">
         <div class="container banner__container">
           <div class="banner__picture">
-            <img src="@/assets/img/banner.png" alt="Напишите нам и получите скидку на открытие 150 000 ₽">
+            <img :src="common.sales_banner.data.attributes.url" alt="Напишите нам и получите скидку на открытие 150 000 ₽">
           </div>
           <div class="banner__text">
             <h3 class="banner__text--title">Вы уже готовы сделать первый шаг к открытию собственной кофейни?</h3>
@@ -175,26 +175,8 @@
       </section>
       <section id="gallery" class="gallery">
         <swiper :options="swiperGallery">
-          <swiper-slide>
-            <img src="@/assets/img/sw2.jpg" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="@/assets/img/sw3.jpg" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="@/assets/img/sw4.jpg" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="@/assets/img/sw5.jpg" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="@/assets/img/sw6.jpg" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="@/assets/img/sw7.jpg" />
-          </swiper-slide>
-          <swiper-slide>
-            <img src="@/assets/img/sw1.jpg" />
+          <swiper-slide v-for="(slide, i) in gallery" :key="i">
+            <img :src="slide.attributes.url" />
           </swiper-slide>
         </swiper>
         <div class="gallery-pagination swiper-pagination-coral" slot="pagination"></div>
@@ -255,7 +237,7 @@ export default {
           title: 'АВТОРСКИЙ КОФЕ', 
           text: 'Более 40 уникальных рецептов, красивые напитки, которые точно запостят в соцсети',
           has_btn: true,
-          btn_link: '/menu/coffee.pdf'
+          file_alias: 'coffee_menu'
         },
         {
           img: 'wb3',
@@ -267,7 +249,7 @@ export default {
           title: 'кухня', 
           text: 'Гонконгские вафли и френчдоги, десерты и выпечка - то, что увеличит вашу прибыль',
           has_btn: true,
-          btn_link: '/menu/food.pdf'
+          file_alias: 'kitchen_menu'
         },
         {
           img: 'wb5',
@@ -326,14 +308,30 @@ export default {
           }
         }
       },
-      common: {}
+      common: {},
+      gallery: {},
+      pdfs: {},
+    }
+  },
+  computed: {
+    wbbFormatted() {
+      return this.wbbData.map(it=>{
+        if (it.has_btn) {
+          it.btn_link = this.pdfs[it.file_alias].data.attributes.url || ''
+        }
+        return it
+      })
     }
   },
   async asyncData({ app }) {
-    const { data } = await app.$axios.get('http://s1.a060aa0p.beget.tech/api/common/')
-    console.log(data)
+    let results = {}
+    const common = await app.$axios.get(`/api/common/?populate=*`)
+    const gallery = await app.$axios.get(`/api/gallery/?populate=*`)
+    const pdfs = await app.$axios.get(`/api/fajly/?populate=*`)
     return {
-      common: data.data.attributes
+      common: common.data.data.attributes,
+      gallery: gallery.data.data.attributes.photo.data,
+      pdfs: pdfs.data.data.attributes,
     }
   }
 }
