@@ -325,9 +325,9 @@ export default {
   },
   async asyncData({ app }) {
     let results = {}
-    const common = await app.$axios.get(`/api/common/?populate=*`)
-    const gallery = await app.$axios.get(`/api/gallery/?populate=*`)
-    const pdfs = await app.$axios.get(`/api/fajly/?populate=*`)
+    const common = await app.$axios.get(`${process.env.STRAPI_URI}/api/common/?populate=*`)
+    const gallery = await app.$axios.get(`${process.env.STRAPI_URI}/api/gallery/?populate=*`)
+    const pdfs = await app.$axios.get(`${process.env.STRAPI_URI}/api/fajly/?populate=*`)
     return {
       common: common.data.data.attributes,
       gallery: gallery.data.data.attributes.photo.data,
