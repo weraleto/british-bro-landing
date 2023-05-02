@@ -351,9 +351,13 @@ export default {
     width: 28px;
     height: 28px;
     opacity: 1;
-    @media screen and (max-width: $--screen-xxs) {
-      width: 18px;
-      height: 18px;
+    @media screen and (max-width: $--screen-md) {
+      width: 15px;
+      height: 15px;
+    }
+    @media screen and (max-width: $--screen-xs) {
+      width: 10px;
+      height: 10px;
     }
   }
   .swiper-pagination-bullet:not(.swiper-pagination-bullet-active) {
@@ -964,15 +968,26 @@ export default {
     justify-content: center;
     padding-top: 20px;
     gap: 20px;
+    @media screen and (max-width: $--screen-md) {
+      gap: 7px;
+    }
   }
 
   .swiper-slide {
+    img {
+      object-fit: cover;
+      width: 100%;
+    }
+    @media screen and (min-width: 481px) {
+      max-height: 60vh;
+      img {
+        height: 60vh; 
+      }
+    }
     @media screen and (max-width: 480px) {
       min-height: 268px; 
       img {
-        object-fit: cover;
         height: 268px; 
-        width: 100%;
       }
     }
   }
