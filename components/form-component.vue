@@ -77,25 +77,23 @@
                         try {
                             const hostname = window.location.origin
                             const res = await this.$axios.post(hostname+'/send/call_request/', this.form)
-                            title = 'Спасибо за заявку!'
-                            message = 'Скоро наш менеджер перезвонит вам'
+                            title = 'Спасибо, в скором времени мы свяжемся с вами!'
                             type = 'success'
                             this.resetForm();
 
                         } catch (e) {
-                            title = 'Произошла ошибка!'
-                            message = 'Попробуйте позже'
+                            message = 'Произошла ошибка! Попробуйте позже'
                             type = 'error'
                         } finally {
-                            this.$message({
-                                offset: 90,
-                                title, message, type
+                            this.$alert(message, '', {
+                                center: true,
+                                type
                             })
                         }
                     }
                 })
             }
-        }
+        }, 
     }
 </script>
 
@@ -105,5 +103,10 @@
 .el-form-item__error {
     color: $--color-coral;
     font-size: 12px;
+}
+
+.el-message-box__title, .el-message-box__message, .el-message-box__btns {
+    font-family: $--font-family-heading;
+    font-size: 18px;
 }
 </style>

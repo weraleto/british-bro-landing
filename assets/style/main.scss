@@ -3,9 +3,11 @@
 @import 'extensions';
 
 $--font-path: 'element-ui/packages/theme-chalk/src/fonts';
+$--button-primary-background-color: $--color-violet-dark;
+$--button-primary-border-color: $--color-violet-dark;
 
 @import 'element-ui/packages/theme-chalk/src/icon';
-@import 'element-ui/packages/theme-chalk/src/notification';
+@import 'element-ui/packages/theme-chalk/src/message-box';
 
 *, *::after, *::before {
     margin: 0;
