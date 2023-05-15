@@ -61,7 +61,7 @@ export default {
         top: 0;
         left: 0;
         right: 0;
-        z-index: 10000;
+        z-index: 1000;
 
         &__container {
             min-height: 122px;

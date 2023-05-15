@@ -71,13 +71,13 @@
                 this.$refs.form.resetFields();
             },
             async submitForm() {
-                let message, title, type;
+                let message, type;
                 this.$refs.form.validate(async (valid) => {
                     if (valid) {
                         try {
                             const hostname = window.location.origin
                             const res = await this.$axios.post(hostname+'/send/call_request/', this.form)
-                            title = 'Спасибо, в скором времени мы свяжемся с вами!'
+                            message = 'Спасибо, в скором времени мы свяжемся с вами!'
                             type = 'success'
                             this.resetForm();
 

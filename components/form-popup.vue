@@ -3,6 +3,7 @@
     :center="true"
     @closed="handleDialogClose"
     title="Получить предложение"
+    :append-to-body="true"
   >
     <form-component ref="form" btn-text="Отправить"></form-component>
   </el-dialog>
@@ -56,7 +57,7 @@ $--dialog-padding-primary: 28px;
     max-width: 454px;
     width: 100%;
 }
-.el-dialog__wrapper {
-    z-index: 10001 !important;
-}
+// .el-dialog__wrapper {
+//     z-index: 10001 !important;
+// }
 </style>
